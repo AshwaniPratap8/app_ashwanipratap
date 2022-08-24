@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: app-replicaset
+  namespace: kubernetes-cluster-ashwanipratap
+  labels:
+    app: app-ashwanipratap
+spec:
+  template:
+    metadata:
+      name: app-pod
+      labels:
+        app: app
+        type: backend
+    spec:
+      containers:
+        -  name: app-container
+           image: ashwanipratap8/i-ashwanipratap-master:latest
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+      type: backend

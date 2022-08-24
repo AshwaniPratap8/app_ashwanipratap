@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+  namespace: kubernetes-cluster-ashwanipratap
+  labels:
+    app: app-configmap
+data:
+  url: "http://www.google.com"
+  env: "dev"

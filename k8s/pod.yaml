@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: app-pod
+ namespace: kubernetes-cluster-ashwanipratap
+ labels:
+  pod: app-pod
+spec:
+ containers:
+ - name: app-container
+   image: ashwanipratap8/i-ashwanipratap-master:latest
