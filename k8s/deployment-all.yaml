@@ -35,6 +35,7 @@ spec:
       labels:
         app: app
         type: backend
+        pod: app-pod
     spec:
       containers:
         -  name: app-container
