@@ -18,6 +18,20 @@ public class Application {
 class MessageController {
 	@GetMapping("/message")
 	public String getMessage() {
+		return ("<b>NAGP 2022 Technology Band III Batch</b><br>" +
+				"Environment Variables from ConfigMap<br>" +
+				"--------------------------------------------------------<br>" +
+				"url: " + System.getenv("url") + "<br>" +
+				"environment: " + System.getenv("env") + "<br>"+
+				"Environment Variables from Secret(After decoding)<br>" +
+				"--------------------------------------------------------<br>" +
+				"DB_PASSWORD: " + System.getenv("DB_PASSWORD") + "<br>" +
+				"FB_PASSWORD: " + System.getenv("FB_PASSWORD") + "<br>");
+
+	}
+
+	@GetMapping("/testmessage")
+	public String getTestMessage() {
 		return ("NAGP 2022 Technology Band III Batch");
 	}
 }

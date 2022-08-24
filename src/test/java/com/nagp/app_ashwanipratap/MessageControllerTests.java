@@ -20,7 +20,7 @@ class MessageControllerTests {
 
     @Test
     void testMessage() throws Exception {
-        String response = mockMvc.perform(get("/message")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        String response = mockMvc.perform(get("/testmessage")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
         Assertions.assertThat(response).isEqualTo("NAGP 2022 Technology Band III Batch");
     }
 

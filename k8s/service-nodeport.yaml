@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: app-nodeport-service
+ namespace: kubernetes-cluster-ashwanipratap
+spec:
+ type: NodePort
+ ports:
+ - targetPort: 8080
+   port: 80
+   nodePort: 30081
+ selector:
+  pod: app-pod

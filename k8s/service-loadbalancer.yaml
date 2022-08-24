@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: app-loadbalancer-service
+ namespace: kubernetes-cluster-ashwanipratap
+spec:
+ type: LoadBalancer
+ ports:
+ - targetPort: 8080
+   port: 80
+   nodePort: 30082
+ selector:
+  pod: app-pod

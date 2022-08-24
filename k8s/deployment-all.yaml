@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+  namespace: kubernetes-cluster-ashwanipratap
+  labels:
+    app: app-configmap
+data:
+  url: "http://www.google.com"
+  env: "dev"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+  namespace: kubernetes-cluster-ashwanipratap
+  labels:
+    app: app-secret
+data:
+  DB_PASSWORD: dGVzdEAxMjM0
+  FB_PASSWORD: aGFoYWhh
+type: Opaque
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: kubernetes-cluster-ashwanipratap
+  labels:
+    app: app-ashwanipratap
+spec:
+  template:
+    metadata:
+      name: app-pod
+      labels:
+        app: app
+        type: backend
+    spec:
+      containers:
+        -  name: app-container
+           image: ashwanipratap8/i-ashwanipratap-master:latest
+           envFrom:
+             - configMapRef:
+                 name: app-configmap
+             - secretRef:
+                 name: app-secret
+  replicas: 4
+  selector:
+    matchLabels:
+      app: app
+      type: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: app-loadbalancer-service
+ namespace: kubernetes-cluster-ashwanipratap
+spec:
+ type: LoadBalancer
+ ports:
+ - targetPort: 8080
+   port: 80
+   nodePort: 30082
+ selector:
+  pod: app-pod
